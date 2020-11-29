@@ -4,67 +4,63 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class ValidateISBNTest {
+class Validate10DigitISBNTest {
 
 	@Test
 	void checkValid10DigitISBN() {
-		ValidateISBN validator = new ValidateISBN();
-		boolean result = validator.checkISBN("0140449116");
+		Validator validator = new Validator();
+		boolean result = validator.check("0140449116");
 		assertTrue(result, "first value");
 		
-		result = validator.checkISBN("0140177396");
+		result = validator.check("0140177396");
 		assertTrue(result, "second value");
 	}
 	
 	@Test
 	public void TenDigitISBNNumbersEndingInAnXAreValid() {
-		ValidateISBN validator = new ValidateISBN();
-		boolean result = validator.checkISBN("012000030X");
+		Validator validator = new Validator();
+		boolean result = validator.check("012000030X");
 		assertTrue(result);
 	}
 	
-	
 	@Test
 	public void checkValid13DigitISBN() {
-		ValidateISBN validator = new ValidateISBN();
-		boolean result = validator.checkISBN("9780306406157");
+		Validator validator = new Validator();
+		boolean result = validator.check("9780306406157");
 		assertTrue(result, "first value");
 		
-		result = validator.checkISBN("9781853260087");
+		result = validator.check("9781853260087");
 		assertTrue(result);
 	}
 	
 	@Test
 	public void checkInvalid13DigitISBN() {
-		ValidateISBN validator = new ValidateISBN();
-		boolean result = validator.checkISBN("9780306406158");
+		Validator validator = new Validator();
+		boolean result = validator.check("9780306406158");
 		assertFalse(result);		
 	}
 	
-	
-	
-	
 	@Test
 	public void checkInvalid10DigitISBN() {
-		ValidateISBN validator = new ValidateISBN();
-		boolean result = validator.checkISBN("0140449117");
+		Validator validator = new Validator();
+		boolean result = validator.check("0140449117");
 		assertFalse(result, "first value");
 	}
 	
 	
 	@Test
 	public void mustBe10DigitsISBNLength() {
-		ValidateISBN validator = new ValidateISBN();
+		Validator validator = new Validator();
 		assertThrows(NumberFormatException.class, () -> {
-			validator.checkISBN("123456789");		
+			validator.check("123456789");		
 		});
 	}
 	
 	@Test
 	public void nonNumericISBNAreNotAllowed() {
-		ValidateISBN validator = new ValidateISBN();
+		Validator validator = new Validator();
 		assertThrows(NumberFormatException.class, () -> {
-			validator.checkISBN("helloworld");		
+			validator.check("helloworld");		
 		});
 	}
 
